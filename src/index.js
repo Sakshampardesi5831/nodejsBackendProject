@@ -1,11 +1,8 @@
-import dotenv from 'dotenv';
-import connectDB from './db/db.js';
-
+import dotenv from "dotenv";
+import connectDB from "./db/db.js";
+import morgan from "morgan";
 dotenv.config({
-    path:'./.env'
-})
+  path: "./.env",
+});
 
 connectDB();
-
-
-
