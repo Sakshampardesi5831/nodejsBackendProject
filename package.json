@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Full Backend Project using Node js and Mongodb",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+     "dev":"nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Sakshampardesi5831/nodejsBackendProject/issues"
   },
-  "homepage": "https://github.com/Sakshampardesi5831/nodejsBackendProject#readme"
+  "homepage": "https://github.com/Sakshampardesi5831/nodejsBackendProject#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
 }
