@@ -1,5 +1,6 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import ApiError from "../utils/ApiError.js";
+import DataUriParser from "datauri/parser.js";
 import User from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -14,7 +15,6 @@ export const register = asyncHandler(async (req, res) => {
   //check for user creation
   //return response
   const { fullName, email, username, password } = req.body;
-  console.log(email);
   if (
     [fullName, email, username, password].some((field) => field?.trim === "")
   ) {
@@ -23,27 +23,28 @@ export const register = asyncHandler(async (req, res) => {
   const duplicateUser = await User.findOne({
     $or: [{ username }, { email }],
   });
-  if (duplicateUser) {
+  /*if (duplicateUser) {
     throw new ApiError(409, "User Username and Email Already exist");
   }
-  const avatarLocalPath = req.files['avatar'][0]
-  const coverLocalPath =  req.files['coverimage'][0];
-  // const avatarLocalPath = req.files['avatar'][0]
-  // const coverLocalPath = req.files['coverimage'][0];
+  console.log(req.files);
+  const avatarLocalPath = req.files["avatar"][0];
+  console.log(avatarLocalPath);
+  const coverLocalPath = req.files["coverimage"][0];
+  console.log(coverLocalPath);
   if (!avatarLocalPath.path) {
     throw new ApiError(400, " Avatar is required");
   }
-  const avatar = await uploadOnCloudinary(avatarLocalPath);
-  console.log(avatar);
-  const coverImage = await uploadOnCloudinary(coverLocalPath);
-  console.log(coverImage);
+  const avatar = await uploadOnCloudinary(avatarLocalPath.path);
+  console.log("after file response" + avatar);
+  const coverImage = await uploadOnCloudinary(coverLocalPath.path);
+  console.log("after file response" + coverImage);
   if (!avatar) {
     throw new ApiError(400, "Avatar file is required !!!");
-  }
+  }*/
   const user = await User.create({
     fullName,
-    avatar: avatar.url,
-    coverImage: coverImage?.url || "",
+    avatar:"",
+    coverImage:"",
     email,
     password,
     username: username.toLowerCase(),
