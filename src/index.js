@@ -2,9 +2,7 @@ import dotenv from "dotenv";
 import connectDB from "./db/db.js";
 import {app} from "./app.js";
 import morgan from "morgan";
-dotenv.config({
-  path: "./.env",
-});
+dotenv.config();
 connectDB()
   .then(() => {
     app.listen(process.env.PORT || 8000, () => {
